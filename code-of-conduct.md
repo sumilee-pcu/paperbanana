@@ -1,95 +1,51 @@
-# Code of Conduct
+# 행동 강령
 
-## Our Pledge
+## 우리의 약속
 
-In the interest of fostering an open and welcoming environment, we as
-contributors and maintainers pledge to making participation in our project and
-our community a harassment-free experience for everyone, regardless of age, body
-size, disability, ethnicity, gender identity and expression, level of
-experience, education, socio-economic status, nationality, personal appearance,
-race, religion, or sexual identity and orientation.
+개방적이고 환영받는 환경을 조성하기 위해, 우리는 기여자 및 유지관리자로서 나이, 체형, 장애, 민족, 성별 정체성 및 표현, 경험 수준, 교육, 사회경제적 지위, 국적, 개인적 외모, 인종, 종교, 또는 성적 정체성 및 지향에 관계없이 모든 사람에게 프로젝트와 커뮤니티 참여를 괴롭힘 없는 경험으로 만들 것을 서약합니다.
 
-## Our Standards
+## 우리의 기준
 
-Examples of behavior that contributes to creating a positive environment
-include:
+긍정적인 환경 조성에 기여하는 행동의 예:
 
-*   Using welcoming and inclusive language
-*   Being respectful of differing viewpoints and experiences
-*   Gracefully accepting constructive criticism
-*   Focusing on what is best for the community
-*   Showing empathy towards other community members
+*   환영하고 포용적인 언어 사용
+*   다양한 관점과 경험에 대한 존중
+*   건설적인 비판을 우아하게 수용하기
+*   커뮤니티에 최선이 되는 것에 집중하기
+*   다른 커뮤니티 멤버에 대한 공감 표현
 
-Examples of unacceptable behavior by participants include:
+참여자들의 용납할 수 없는 행동의 예:
 
-*   The use of sexualized language or imagery and unwelcome sexual attention or
-    advances
-*   Trolling, insulting/derogatory comments, and personal or political attacks
-*   Public or private harassment
-*   Publishing others' private information, such as a physical or electronic
-    address, without explicit permission
-*   Disrespecting the community's time by sending spam or other unsolicited
-    commercial messages
-*   Other conduct which could reasonably be considered inappropriate in a
-    professional setting
+*   성적인 언어나 이미지 사용 및 원치 않는 성적 관심이나 접근
+*   트롤링, 모욕적/경멸적 발언, 개인적 또는 정치적 공격
+*   공개적 또는 사적 괴롭힘
+*   명시적 허가 없이 물리적 또는 전자 주소와 같은 타인의 개인 정보 공개
+*   스팸 또는 기타 원치 않는 상업적 메시지 전송으로 커뮤니티의 시간 낭비
+*   전문적 환경에서 부적절하다고 합리적으로 간주될 수 있는 기타 행동
 
-## Our Responsibilities
+## 우리의 책임
 
-Project maintainers are responsible for clarifying the standards of acceptable
-behavior and are expected to take appropriate and fair corrective action in
-response to any instances of unacceptable behavior.
+프로젝트 유지관리자는 용납 가능한 행동의 기준을 명확히 할 책임이 있으며, 용납할 수 없는 행동의 사례에 대해 적절하고 공정한 시정 조치를 취할 것이 기대됩니다.
 
-Project maintainers have the right and responsibility to remove, edit, or reject
-comments, commits, code, wiki edits, issues, and other contributions that are
-not aligned to this Code of Conduct, or to ban temporarily or permanently any
-contributor for other behaviors that they deem inappropriate, threatening,
-offensive, or harmful.
+프로젝트 유지관리자는 이 행동 강령에 맞지 않는 댓글, 커밋, 코드, wiki 편집, 이슈 및 기타 기여를 제거, 편집 또는 거부하거나, 부적절하거나 위협적이거나 공격적이거나 해롭다고 판단되는 행동을 하는 기여자를 일시적 또는 영구적으로 차단할 권리와 책임이 있습니다.
 
-## Scope
+## 적용 범위
 
-This Code of Conduct applies both within project spaces and in public spaces
-when an individual is representing the project or its community. Examples of
-representing a project or community include using an official project e-mail
-address, posting via an official social media account, or acting as an appointed
-representative at an online or offline event. Representation of a project may be
-further defined and clarified by project maintainers.
+이 행동 강령은 개인이 프로젝트 또는 커뮤니티를 대표할 때 프로젝트 공간과 공공 공간 모두에 적용됩니다. 프로젝트 또는 커뮤니티를 대표하는 예에는 공식 프로젝트 이메일 주소 사용, 공식 소셜 미디어 계정을 통한 게시, 온라인 또는 오프라인 이벤트에서 임명된 대표자로 활동하는 것이 포함됩니다. 프로젝트 대표는 프로젝트 유지관리자에 의해 추가로 정의되고 명확화될 수 있습니다.
 
-This Code of Conduct also applies outside the project spaces when the Project
-Steward has a reasonable belief that an individual's behavior may have a
-negative impact on the project or its community.
+이 행동 강령은 프로젝트 관리자가 개인의 행동이 프로젝트 또는 커뮤니티에 부정적인 영향을 미칠 수 있다고 합리적으로 판단할 때 프로젝트 공간 외부에도 적용됩니다.
 
-## Conflict Resolution
+## 분쟁 해결
 
-We do not believe that all conflict is bad; healthy debate and disagreement
-often yield positive results. However, it is never okay to be disrespectful or
-to engage in behavior that violates the project’s code of conduct.
+모든 갈등이 나쁜 것은 아니라고 생각합니다. 건강한 토론과 이견은 종종 긍정적인 결과를 가져옵니다. 그러나 무례하거나 프로젝트의 행동 강령을 위반하는 행동은 절대 용납되지 않습니다.
 
-If you see someone violating the code of conduct, you are encouraged to address
-the behavior directly with those involved. Many issues can be resolved quickly
-and easily, and this gives people more control over the outcome of their
-dispute. If you are unable to resolve the matter for any reason, or if the
-behavior is threatening or harassing, report it. We are dedicated to providing
-an environment where participants feel welcome and safe.
+누군가가 행동 강령을 위반하는 것을 발견하면, 관련 당사자들과 직접 행동을 다루는 것이 권장됩니다. 많은 문제들이 빠르고 쉽게 해결될 수 있으며, 이는 사람들에게 분쟁 결과에 대한 더 많은 통제권을 줍니다. 어떤 이유로든 문제를 해결할 수 없거나, 행동이 위협적이거나 괴롭힘이라면 신고하세요. 우리는 참여자들이 환영받고 안전하다고 느낄 수 있는 환경을 제공하기 위해 최선을 다하고 있습니다.
 
-Reports should be directed to *[PROJECT STEWARD NAME(s) AND EMAIL(s)]*, the
-Project Steward(s) for *[PROJECT NAME]*. It is the Project Steward’s duty to
-receive and address reported violations of the code of conduct. They will then
-work with a committee consisting of representatives from the Open Source
-Programs Office and the Google Open Source Strategy team. If for any reason you
-are uncomfortable reaching out to the Project Steward, please email
-opensource@google.com.
+신고는 *[프로젝트 관리자 이름 및 이메일]*에게 전달되어야 합니다. 프로젝트 관리자는 행동 강령 위반 신고를 접수하고 처리할 의무가 있습니다. 그런 다음 오픈소스 프로그램 사무소와 Google 오픈소스 전략 팀의 대표자들로 구성된 위원회와 협력할 것입니다. 어떤 이유로든 프로젝트 관리자에게 연락하기 불편하다면, opensource@google.com으로 이메일을 보내세요.
 
-We will investigate every complaint, but you may not receive a direct response.
-We will use our discretion in determining when and how to follow up on reported
-incidents, which may range from not taking action to permanent expulsion from
-the project and project-sponsored spaces. We will notify the accused of the
-report and provide them an opportunity to discuss it before any action is taken.
-The identity of the reporter will be omitted from the details of the report
-supplied to the accused. In potentially harmful situations, such as ongoing
-harassment or threats to anyone's safety, we may take action without notice.
+모든 불만 사항을 조사할 것이지만, 직접적인 답변을 받지 못할 수도 있습니다. 보고된 사건에 대한 후속 조치 시기와 방법은 행동 취하지 않음에서 프로젝트 및 프로젝트 후원 공간에서의 영구 추방에 이르기까지 다양할 수 있습니다. 조치를 취하기 전에 피고인에게 보고 사항을 통보하고 이에 대해 논의할 기회를 제공할 것입니다. 피고인에게 제공되는 보고서의 세부 정보에서 신고자의 신원은 생략됩니다. 지속적인 괴롭힘이나 누군가의 안전에 대한 위협과 같이 잠재적으로 해로운 상황에서는 통보 없이 조치를 취할 수 있습니다.
 
-## Attribution
+## 귀속
 
-This Code of Conduct is adapted from the Contributor Covenant, version 1.4,
-available at
-https://www.contributor-covenant.org/version/1/4/code-of-conduct/
+이 행동 강령은 Contributor Covenant 버전 1.4에서 채택되었으며,
+https://www.contributor-covenant.org/version/1/4/code-of-conduct/에서 확인할 수 있습니다.

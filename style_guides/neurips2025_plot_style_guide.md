@@ -1,90 +1,90 @@
-# NeurIPS 2025 Statistical Plot Aesthetics Guide
+# NeurIPS 2025 통계 플롯 미학 가이드
 
-## 1. The "NeurIPS Look": A High-Level Overview
-The prevailing aesthetic for 2025 is defined by **precision, accessibility, and high contrast**. The "default" academic look has shifted away from bare-bones styling toward a more graphic, publication-ready presentation.
+## 1. "NeurIPS 스타일": 고수준 개요
+2025년의 주류 미학은 **정밀성, 접근성, 고대비**로 정의됩니다. 학술 논문의 기본 외관은 단순한 스타일에서 보다 그래픽적이고 출판-레디한 프레젠테이션으로 변화했습니다.
 
-*   **Vibe:** Professional, clean, and information-dense.
-*   **Backgrounds:** There is a heavy bias toward **stark white backgrounds** for maximum contrast in print and PDF reading, though the "Seaborn-style" light grey background remains an accepted variant.
-*   **Accessibility:** A strong emphasis on distinguishing data not just by color, but by texture (patterns) and shape (markers) to support black-and-white printing and colorblind readers.
-
----
-
-## 2. Detailed Style Options
-
-### **Color Palettes**
-*   **Categorical Data:**
-    *   **Soft Pastels:** Matte, low-saturation colors (salmon, sky blue, mint, lavender) are frequently used to prevent visual fatigue. 
-    *   **Muted Earth Tones:** "Academic" palettes using olive, beige, slate grey, and navy.
-    *   **High-Contrast Primaries:** Used sparingly when categories must be distinct (e.g., deep orange vs. vivid purple).
-    *   **Accessibility Mode:** A growing trend involves combining color with **geometric patterns** (hatches, dots, stripes) to differentiate categories.
-*   **Sequential & Heatmaps:**
-    *   **Perceptually Uniform:** "Viridis" (blue-to-yellow) and "Magma/Plasma" (purple-to-orange) are the standard.
-    *   **Diverging:** "Coolwarm" (blue-to-red) is used for positive/negative value splits.
-    *   **Avoid:** The traditional "Jet/Rainbow" scale is almost entirely absent.
-
-### **Axes & Grids**
-*   **Grid Style:**
-    *   **Visibility:** Grid lines are almost rarely solid. Common choices include **fine dashed (`--`)** or **dotted (`:`)** lines in light gray.
-    *   **Placement:** Grids are consistently rendered *behind* data elements (low Z-order).
-*   **Spines (Borders):**
-    *   **The "Boxed" Look:** A full enclosure (black spines on all 4 sides) is very common.
-    *   **The "Open" Look:** Removing the top and right spines for a minimalist appearance.
-*   **Ticks:**
-    *   **Style:** Ticks are generally subtle, facing inward, or removed entirely in favor of grid alignment.
-
-### **Layout & Typography**
-*   **Typography:**
-    *   **Font Family:** Exclusively **Sans-Serif** (resembling Helvetica, Arial, or DejaVu Sans). Serif fonts are rarely used for labels.
-    *   **Label Rotation:** X-axis labels are rotated **45 degrees** only when necessary to prevent overlap; otherwise, horizontal orientation is preferred.
-*   **Legends:**
-    *   **Internal Placement:** Floating the legend *inside* the plot area (top-left or top-right) to maximize the "data-ink ratio."
-    *   **Top Horizontal:** Placing the legend in a single row above the plot title.
-*   **Annotations:**
-    *   **Direct Labeling:** Instead of forcing readers to reference a legend, text is often placed directly next to lines or on top of bars.
+*   **분위기:** 전문적, 깔끔하고 정보 밀도가 높음.
+*   **배경:** 인쇄물과 PDF 읽기에서 최대 대비를 위한 **순백색 배경**에 강한 편향이 있으며, "Seaborn 스타일"의 밝은 회색 배경도 허용되는 변형입니다.
+*   **접근성:** 흑백 인쇄 및 색맹 독자를 지원하기 위해 색상뿐만 아니라 질감(패턴)과 형태(마커)로 데이터를 구분하는 것을 강조합니다.
 
 ---
 
-## 3. Type-Specific Guidelines
+## 2. 세부 스타일 옵션
 
-### **Bar Charts & Histograms**
-*   **Borders:** Two distinct styles are accepted:
-    *   **High-Definition:** Using **black outlines** around colored bars for a "comic-book" or high-contrast look.
-    *   **Borderless:** Solid color fills with no outline (often used with light grey backgrounds).
-*   **Grouping:** Bars are grouped tightly, with significant whitespace between categorical groups.
-*   **Error Bars:** Consistently styled with **black, flat caps**.
+### **색상 팔레트**
+*   **범주형 데이터:**
+    *   **부드러운 파스텔:** 시각적 피로를 줄이기 위해 무광택의 저채도 색상(연어색, 하늘색, 민트, 라벤더)이 자주 사용됩니다.
+    *   **음소거된 흙빛:** 올리브, 베이지, 슬레이트 회색, 네이비를 사용하는 "학술적" 팔레트.
+    *   **고대비 원색:** 카테고리가 명확히 구분되어야 할 때 드물게 사용됩니다 (예: 짙은 주황색 vs 선명한 보라색).
+    *   **접근성 모드:** 색상에 **기하학적 패턴** (해치, 점, 줄무늬)을 결합하여 카테고리를 구분하는 추세가 증가하고 있습니다.
+*   **순차적 & 히트맵:**
+    *   **지각적으로 균일:** "Viridis" (파란색에서 노란색) 및 "Magma/Plasma" (보라색에서 주황색)가 표준입니다.
+    *   **발산형:** "Coolwarm" (파란색에서 빨간색)은 양수/음수 값 분할에 사용됩니다.
+    *   **피할 것:** 전통적인 "Jet/Rainbow" 스케일은 거의 사용되지 않습니다.
 
-### **Line Charts**
-*   **Markers:** A critical observation: Lines almost always include **geometric markers** (circles, squares, diamonds) at data points, rather than just being smooth strokes.
-*   **Line Styles:** Use **dashed lines** (`--`) for theoretical limits, baselines, or secondary data, and **solid lines** for primary experimental data.
-*   **Uncertainty:** Represented by semi-transparent **shaded bands** (confidence intervals) rather than simple vertical error bars.
+### **축 & 격자**
+*   **격자 스타일:**
+    *   **가시성:** 격자선은 거의 실선이 아닙니다. 일반적인 선택은 밝은 회색의 **가는 점선(`--`)** 또는 **점선(`:`)** 입니다.
+    *   **배치:** 격자는 데이터 요소 뒤에 일관되게 렌더링됩니다 (낮은 Z-순서).
+*   **척추 (테두리):**
+    *   **"박스형" 외관:** 4면 모두에 검정 척추가 있는 완전 둘러싸기가 매우 일반적입니다.
+    *   **"개방형" 외관:** 미니멀리스트 외관을 위해 상단과 우측 척추를 제거합니다.
+*   **눈금:**
+    *   **스타일:** 눈금은 일반적으로 미묘하고, 안쪽을 향하거나, 격자 정렬을 위해 완전히 제거됩니다.
 
-### **Tree & Pie/Donut Charts**
-*   **Separators:** Thick **white borders** are standard to separate slices or treemap blocks.
-*   **Structure:** Thick **Donut charts** are preferred over traditional Pie charts.
-*   **Emphasis:** "Exploding" (detaching) a specific slice is a common technique to highlight a key statistic.
-
-### **Scatter Plots**
-*   **Shape Coding:** Use different marker shapes (e.g., circles vs. triangles) to encode a categorical dimension alongside color.
-*   **Fills:** Markers are typically solid and fully opaque.
-*   **3D Plots:** Depth is emphasized by drawing "walls" with grids or using drop-lines to the "floor" of the plot.
-
-### **Heatmaps**
-*   **Aspect Ratio:** Cells are almost strictly **square**.
-*   **Annotation:** Writing the exact value (in white or black text) **inside the cell** is highly preferred over relying solely on a color bar.
-*   **Borders:** Cells are often borderless (smooth gradient look) or separated by very thin white lines.
-
-### **Radar Charts**
-*   **Fills:** The polygon area uses **translucent fills** (alpha ~0.2) to show grid lines underneath.
-*   **Perimeter:** The outer boundary is marked by a solid, darker line.
-
-### **Miscellaneous**
-*   **Dot Plots:** Used as a modern alternative to bar charts; often styled as "lollipops" (dots connected to the axis by a thin line).
+### **레이아웃 & 타이포그래피**
+*   **타이포그래피:**
+    *   **폰트 패밀리:** 독점적으로 **산세리프** (Helvetica, Arial, 또는 DejaVu Sans와 유사). 레이블에 세리프 폰트는 거의 사용되지 않습니다.
+    *   **레이블 회전:** X축 레이블은 겹침을 방지하기 위해 필요할 때만 **45도** 회전; 그렇지 않으면 수평 방향이 선호됩니다.
+*   **범례:**
+    *   **내부 배치:** "데이터-잉크 비율"을 극대화하기 위해 플롯 영역 내부에 범례를 배치합니다 (좌상단 또는 우상단).
+    *   **상단 수평:** 플롯 제목 위에 단일 행으로 범례를 배치합니다.
+*   **주석:**
+    *   **직접 레이블링:** 독자가 범례를 참조하도록 강요하는 대신, 텍스트를 선 바로 옆이나 막대 위에 직접 배치합니다.
 
 ---
 
-## 4. Common Pitfalls (What to Avoid)
-*   **The "Excel Default" Look:** Avoid heavy 3D effects on bars, shadow drops, or serif fonts (Times New Roman) on axes.
-*   **The "Rainbow" Map:** Avoid the Jet/Rainbow colormap; it is considered outdated and perceptually misleading.
-*   **Ambiguous Lines:** A line chart *without* markers can look ambiguous if data points are sparse; always add markers.
-*   **Over-reliance on Color:** Failing to use patterns or shapes to distinguish groups makes the plot inaccessible to colorblind readers.
-*   **Cluttered Grids:** Avoid solid black grid lines; they compete with the data. Always use light grey/dashed grids.
+## 3. 유형별 가이드라인
+
+### **막대 차트 & 히스토그램**
+*   **테두리:** 두 가지 스타일이 허용됩니다:
+    *   **고화질:** "만화책" 또는 고대비 외관을 위해 색상 막대 주위에 **검정 테두리** 사용.
+    *   **테두리 없음:** 테두리 없는 단색 채우기 (밝은 회색 배경에 자주 사용).
+*   **그룹화:** 막대는 촘촘하게 그룹화되며, 범주형 그룹 사이에 상당한 여백이 있습니다.
+*   **오차 막대:** **검정, 평평한 캡**으로 일관되게 스타일링됩니다.
+
+### **선 차트**
+*   **마커:** 중요한 관찰: 선은 부드러운 획만 있는 것이 아니라 데이터 포인트에 거의 항상 **기하학적 마커** (원, 정사각형, 다이아몬드)를 포함합니다.
+*   **선 스타일:** 이론적 한계, 기준선 또는 보조 데이터에는 **점선(`--`)**을, 기본 실험 데이터에는 **실선**을 사용합니다.
+*   **불확실성:** 단순 수직 오차 막대 대신 반투명 **음영 밴드** (신뢰 구간)로 표현됩니다.
+
+### **트리 & 파이/도넛 차트**
+*   **구분선:** **흰색 굵은 테두리**가 슬라이스 또는 트리맵 블록을 구분하는 표준입니다.
+*   **구조:** 두꺼운 **도넛 차트**가 전통적인 파이 차트보다 선호됩니다.
+*   **강조:** 특정 슬라이스를 "폭발"(분리)하는 것이 주요 통계를 강조하는 일반적인 기법입니다.
+
+### **산점도**
+*   **형태 코딩:** 색상과 함께 범주형 차원을 인코딩하기 위해 서로 다른 마커 형태(예: 원 vs 삼각형)를 사용합니다.
+*   **채우기:** 마커는 일반적으로 단색이고 완전히 불투명합니다.
+*   **3D 플롯:** 격자가 있는 "벽"을 그리거나 플롯의 "바닥"으로 드롭 라인을 사용하여 깊이를 강조합니다.
+
+### **히트맵**
+*   **종횡비:** 셀은 거의 엄격하게 **정사각형**입니다.
+*   **주석:** 색상 바에만 의존하는 것보다 셀 내부에 정확한 값(흰색 또는 검정 텍스트)을 **쓰는 것**이 매우 선호됩니다.
+*   **테두리:** 셀은 종종 테두리 없음(부드러운 그라디언트 외관) 또는 매우 얇은 흰색 선으로 구분됩니다.
+
+### **레이더 차트**
+*   **채우기:** 다각형 영역은 아래 격자선이 보이도록 **반투명 채우기** (알파 ~0.2)를 사용합니다.
+*   **외곽선:** 외부 경계는 더 어두운 실선으로 표시됩니다.
+
+### **기타**
+*   **점 플롯:** 막대 차트의 현대적 대안으로 사용됩니다; 종종 "롤리팝"으로 스타일링됩니다 (축에 얇은 선으로 연결된 점).
+
+---
+
+## 4. 흔한 실수 (피해야 할 것)
+*   **"엑셀 기본" 외관:** 막대에 무거운 3D 효과, 그림자, 또는 축에 세리프 폰트(Times New Roman)를 피하세요.
+*   **"레인보우" 맵:** Jet/Rainbow 컬러맵을 피하세요; 오래된 것으로 간주되며 지각적으로 오해를 일으킵니다.
+*   **모호한 선:** 데이터 포인트가 희박하면 마커가 없는 선 차트는 모호하게 보일 수 있습니다; 항상 마커를 추가하세요.
+*   **색상에 과도한 의존:** 그룹을 구분하기 위해 패턴이나 형태를 사용하지 않으면 색맹 독자에게 접근 불가능한 플롯이 됩니다.
+*   **복잡한 격자:** 실선 검정 격자를 피하세요; 데이터와 경쟁합니다. 항상 밝은 회색/점선 격자를 사용하세요.

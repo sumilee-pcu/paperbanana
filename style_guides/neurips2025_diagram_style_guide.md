@@ -1,105 +1,105 @@
-### 1. The "NeurIPS Look"
-The prevailing aesthetic for 2025 is **"Soft Tech & Scientific Pastels."**
-Gone are the days of harsh primary colors and sharp black boxes. The modern NeurIPS diagram feels approachable yet precise. It utilizes high-value (light) backgrounds to organize complexity, reserving saturation for the most critical active elements. The vibe balances **clean modularity** (clear separation of parts) with **narrative flow** (clear left-to-right progression).
+### 1. "NeurIPS 스타일"이란
+2025년의 주류 미학은 **"부드러운 기술 & 과학적 파스텔"**입니다.
+강렬한 원색과 날카로운 검정 박스의 시대는 지났습니다. 현대적인 NeurIPS 다이어그램은 접근하기 쉬우면서도 정밀한 느낌을 줍니다. 복잡성을 정리하기 위해 높은 명도(밝은) 배경을 활용하고, 가장 중요한 활성 요소에만 채도를 사용합니다. 분위기는 **깔끔한 모듈성**(명확한 부분 구분)과 **내러티브 흐름**(명확한 왼쪽에서 오른쪽으로의 진행)의 균형을 맞춥니다.
 
 ---
 
-### 2. Detailed Style Options
+### 2. 세부 스타일 옵션
 
-#### **A. Color Palettes**
-*Design Philosophy: Use color to group logic, not just to decorate. Avoid fully saturated backgrounds.*
+#### **A. 색상 팔레트**
+*디자인 철학: 색상을 단순 장식이 아닌 논리 그룹화에 사용하세요. 완전히 채도 높은 배경은 피하세요.*
 
-**Background Fills (The "Zone" Strategy)**
-*Used to encapsulate stages (e.g., "Pre-training phase") or environments.*
-*   **Most papers use:** Very light, desaturated pastels (Opacity ~10–15%).
-*   **Aesthetically pleasing options include:**
-    *   🍦 **Cream / Beige** (e.g., `#F5F5DC`) – *Warm, academic feel.*
-    *   ☁️ **Pale Blue / Ice** (e.g., `#E6F3FF`) – *Clean, technical feel.*
-    *   🌿 **Mint / Sage** (e.g., `#E0F2F1`) – *Soft, organic feel.*
-    *   🌸 **Pale Lavender** (e.g., `#F3E5F5`) – *distinctive, modern feel.*
-*   **Alternative (~20%):** White backgrounds with colored *dashed borders* for a high-contrast, minimalist look (common in theoretical papers).
+**배경 채우기 ("구역" 전략)**
+*단계(예: "사전 훈련 단계") 또는 환경을 캡슐화하는 데 사용됩니다.*
+*   **대부분의 논문에서 사용:** 매우 밝고 채도가 낮은 파스텔 (불투명도 ~10–15%).
+*   **미적으로 좋은 옵션:**
+    *   🍦 **크림 / 베이지** (예: `#F5F5DC`) – *따뜻하고 학술적인 느낌.*
+    *   ☁️ **연한 파란색 / 아이스** (예: `#E6F3FF`) – *깔끔하고 기술적인 느낌.*
+    *   🌿 **민트 / 세이지** (예: `#E0F2F1`) – *부드럽고 유기적인 느낌.*
+    *   🌸 **연한 라벤더** (예: `#F3E5F5`) – *독특하고 현대적인 느낌.*
+*   **대안 (~20%):** 고대비 미니멀리스트 외관을 위한 색상 *점선 테두리*가 있는 흰색 배경 (이론 논문에서 흔함).
 
-**Functional Element Colors**
-*   **For "Active" Modules (Encoders, MLP, Attention):** Medium saturation is preferred.
-    *   *Common pairings:* Blue/Orange, Green/Purple, or Teal/Pink.
-    *   *Observation:* Colors are often used to distinguish **status** rather than component type:
-        *   **Trainable Elements:** Often Warm tones (Red, Orange, Deep Pink).
-        *   **Frozen/Static Elements:** Often Cool tones (Grey, Ice Blue, Cyan).
-*   **For Highlights/Results:** High saturation (Primary Red, Bright Gold) is strictly reserved for "Error/Loss," "Ground Truth," or the final output.
+**기능적 요소 색상**
+*   **"활성" 모듈 (인코더, MLP, 어텐션):** 중간 채도가 선호됩니다.
+    *   *일반적인 조합:* 파란색/주황색, 녹색/보라색, 또는 청록색/분홍색.
+    *   *관찰:* 색상은 구성 요소 유형보다 **상태**를 구분하는 데 사용되는 경우가 많습니다:
+        *   **훈련 가능한 요소:** 따뜻한 톤 (빨강, 주황, 진한 분홍).
+        *   **고정/정적 요소:** 차가운 톤 (회색, 아이스 블루, 시안).
+*   **하이라이트/결과:** 높은 채도 (기본 빨강, 밝은 금색)는 "오류/손실", "정답", 또는 최종 출력에만 엄격히 사용됩니다.
 
-#### **B. Shapes & Containers**
-*Design Philosophy: "Softened Geometry." Sharp corners are for data; rounded corners are for processes.*
+#### **B. 도형 & 컨테이너**
+*디자인 철학: "부드러워진 기하학." 날카로운 모서리는 데이터용, 둥근 모서리는 프로세스용.*
 
-**Core Components**
-*   **Process Nodes (The Standard):** Rounded Rectangles (Corner radius 5–10px). This is the dominant shape (~80%) for generic layers or steps.
-*   **Tensors & Data:**
-    *   **3D Stacks/Cuboids:** Used to imply depth/volume (e.g., $B \times H \times W$).
-    *   **Flat Squares/Grids:** Used for matrices, tokens, or attention maps.
-    *   **Cylinders:** Exclusively reserved for Databases, Buffers, or Memory.
+**핵심 구성 요소**
+*   **프로세스 노드 (기준):** 둥근 직사각형 (모서리 반경 5–10px). 일반 레이어 또는 단계에 가장 많이 사용되는 형태 (~80%)입니다.
+*   **텐서 & 데이터:**
+    *   **3D 스택/큐보이드:** 깊이/부피를 암시하는 데 사용됩니다 (예: $B \times H \times W$).
+    *   **평면 정사각형/격자:** 행렬, 토큰, 또는 어텐션 맵에 사용됩니다.
+    *   **원통형:** 데이터베이스, 버퍼, 또는 메모리에만 사용됩니다.
 
-**Grouping & Hierarchy**
-*   **The "Macro-Micro" Pattern:** A solid, light-colored container represents the global view, with a specific module (e.g., "Attention Block") connected via lines to a "zoomed-in" detailed breakout box.
-*   **Borders:**
-    *   **Solid:** For physical components.
-    *   **Dashed:** Highly prevalent for indicating "Logical Stages," "Optional Paths," or "Scopes."
+**그룹화 & 계층 구조**
+*   **"매크로-마이크로" 패턴:** 실선의 밝은 색 컨테이너는 전체 뷰를 나타내고, 특정 모듈(예: "어텐션 블록")은 줄로 "확대된" 상세 분리 박스에 연결됩니다.
+*   **테두리:**
+    *   **실선:** 물리적 구성 요소용.
+    *   **점선:** "논리적 단계", "선택적 경로", 또는 "범위"를 나타내는 데 매우 널리 사용됩니다.
 
-#### **C. Lines & Arrows**
-*Design Philosophy: Line style dictates flow type.*
+#### **C. 선 & 화살표**
+*디자인 철학: 선 스타일이 흐름 유형을 나타냅니다.*
 
-**Connector Styles**
-*   **Orthogonal / Elbow (Right Angles):** Most papers use this for **Network Architectures** (implies precision, matrices, and tensors).
-*   **Curved / Bezier:** Common choices include this for **System Logic, Feedback Loops, or High-Level Data Flow** (implies narrative and connection).
+**연결선 스타일**
+*   **직교형 / 꺾임선 (직각):** 대부분의 논문에서 **네트워크 아키텍처**에 사용됩니다 (정밀성, 행렬, 텐서를 암시).
+*   **곡선 / 베지어:** **시스템 논리, 피드백 루프, 또는 고수준 데이터 흐름**에 사용됩니다 (내러티브와 연결을 암시).
 
-**Line Semantics**
-*   **Solid Black/Grey:** Standard data flow (Forward pass).
-*   **Dashed Lines:** Universally recognized as "Auxiliary Flow."
-    *   *Used for:* Gradient updates, Skip connections, or Loss calculations.
-*   **Integrated Math:** Standard operators ($\oplus$ for Add, $\otimes$ for Concat/Multiply) are frequently placed *directly* on the line or intersection.
+**선의 의미**
+*   **실선 검정/회색:** 표준 데이터 흐름 (순전파).
+*   **점선:** "보조 흐름"으로 보편적으로 인식됩니다.
+    *   *사용 대상:* 기울기 업데이트, 스킵 연결, 또는 손실 계산.
+*   **통합 수학:** 표준 연산자 ($\oplus$ 더하기, $\otimes$ 연결/곱하기)는 선 또는 교차점 위에 직접 배치됩니다.
 
-#### **D. Typography & Icons**
-*Design Philosophy: Strict separation between "Labeling" and "Math."*
+#### **D. 타이포그래피 & 아이콘**
+*디자인 철학: "라벨링"과 "수학"의 엄격한 분리.*
 
-**Typography**
-*   **Labels (Module Names):** **Sans-Serif** (Arial, Roboto, Helvetica).
-    *   *Style:* Bold for headers, Regular for details.
-*   **Variables (Math):** **Serif** (Times New Roman, LaTeX default).
-    *   *Rule:* If it is a variable in your equation (e.g., $x, \theta, \mathcal{L}$), it **must** be Serif and Italicized in the diagram.
+**타이포그래피**
+*   **라벨 (모듈 이름):** **산세리프** (Arial, Roboto, Helvetica).
+    *   *스타일:* 헤더는 굵게, 세부 사항은 보통 굵기.
+*   **변수 (수학):** **세리프** (Times New Roman, LaTeX 기본).
+    *   *규칙:* 방정식의 변수인 경우 (예: $x, \theta, \mathcal{L}$), 다이어그램에서 반드시 세리프 및 이탤릭체로 표시해야 합니다.
 
-**Iconography Options**
-*   **For Model State:**
-    *   *Trainable:* 🔥 Fire, ⚡ Lightning.
-    *   *Frozen:* ❄️ Snowflake, 🔒 Padlock, 🛑 Stop Sign (Greyed out).
-*   **For Operations:**
-    *   *Inspection:* 🔍 Magnifying Glass.
-    *   *Processing/Computation:* ⚙️ Gear, 🖥️ Monitor.
-*   **For Content:**
-    *   *Text/Prompt:* 📄 Document, 💬 Chat Bubble.
-    *   *Image:* 🖼️ Actual thumbnail of an image (not just a square).
-
----
-
-### 3. Common Pitfalls (How to look "Amateur")
-*   ❌ **The "PowerPoint Default" Look:** Using standard Blue/Orange presets with heavy black outlines.
-*   ❌ **Font Mixing:** Using Times New Roman for "Encoder" labels (makes the paper look dated to the 1990s).
-*   ❌ **Inconsistent Dimension:** Mixing flat 2D boxes and 3D isometric cubes without a clear reason (e.g., 2D for logic, 3D for tensors is fine; random mixing is not).
-*   ❌ **Primary Backgrounds:** Using saturated Yellow or Blue backgrounds for grouping (distracts from the content).
-*   ❌ **Ambiguous Arrows:** Using the same line style for "Data Flow" and "Gradient Flow."
+**아이콘 옵션**
+*   **모델 상태:**
+    *   *훈련 가능:* 🔥 불꽃, ⚡ 번개.
+    *   *고정:* ❄️ 눈송이, 🔒 자물쇠, 🛑 정지 표시 (회색으로).
+*   **연산:**
+    *   *검사:* 🔍 돋보기.
+    *   *처리/계산:* ⚙️ 기어, 🖥️ 모니터.
+*   **콘텐츠:**
+    *   *텍스트/프롬프트:* 📄 문서, 💬 말풍선.
+    *   *이미지:* 🖼️ 실제 이미지 축소판 (단순 정사각형이 아닌).
 
 ---
 
-### 4. Domain-Specific Styles
+### 3. 흔한 실수 ("아마추어처럼 보이는 방법")
+*   ❌ **"파워포인트 기본" 외관:** 굵은 검정 테두리와 표준 파란색/주황색 프리셋 사용.
+*   ❌ **폰트 혼합:** "인코더" 라벨에 Times New Roman 사용 (1990년대처럼 오래된 느낌을 줌).
+*   ❌ **일관성 없는 차원:** 명확한 이유 없이 평면 2D 박스와 3D 등각 큐브 혼합 (예: 논리는 2D, 텐서는 3D는 괜찮지만 무작위 혼합은 안 됨).
+*   ❌ **원색 배경:** 그룹화에 채도 높은 노란색 또는 파란색 배경 사용 (콘텐츠에서 주의를 분산).
+*   ❌ **모호한 화살표:** "데이터 흐름"과 "기울기 흐름"에 동일한 선 스타일 사용.
 
-**If you are writing an AGENT / LLM Paper:**
-*   **Vibe:** Illustrative, Narrative, "Friendly.", Cartoony.
-*   **Key Elements:** Use "User Interface" aesthetics. Chat bubbles for prompts, document icons for retrieval.
-*   **Characters:** It is common to use cute 2D vector robots, human avatars, or emojis to humanize the agent's reasoning steps.
+---
 
-**If you are writing a COMPUTER VISION / 3D Paper:**
-*   **Vibe:** Spatial, Dense, Geometric.
-*   **Key Elements:** Frustums (camera cones), Ray lines, and Point Clouds.
-*   **Color:** Often uses RGB color coding to denote axes or channel correspondence. Use heatmaps (Rainbow/Viridis) to show activation.
+### 4. 도메인별 스타일
 
-**If you are writing a THEORETICAL / OPTIMIZATION Paper:**
-*   **Vibe:** Minimalist, Abstract, "Textbook."
-*   **Key Elements:** Focus on graph nodes (circles) and manifolds (planes/surfaces).
-*   **Color:** Restrained. mostly Grayscale/Black/White with one highlight color (e.g., Gold or Blue). Avoid "cartoony" elements.
+**에이전트 / LLM 논문 작성 시:**
+*   **분위기:** 삽화적, 내러티브, "친근한", 만화 같은.
+*   **핵심 요소:** "사용자 인터페이스" 미학 사용. 프롬프트용 말풍선, 검색용 문서 아이콘.
+*   **캐릭터:** 에이전트의 추론 단계를 인간화하기 위해 귀여운 2D 벡터 로봇, 인간 아바타, 또는 이모지를 사용하는 것이 일반적입니다.
+
+**컴퓨터 비전 / 3D 논문 작성 시:**
+*   **분위기:** 공간적, 밀집, 기하학적.
+*   **핵심 요소:** 절두체(카메라 콘), 광선, 포인트 클라우드.
+*   **색상:** 축 또는 채널 대응을 나타내기 위해 RGB 색상 코딩을 자주 사용합니다. 활성화를 표시하기 위해 히트맵 (Rainbow/Viridis) 사용.
+
+**이론 / 최적화 논문 작성 시:**
+*   **분위기:** 미니멀리스트, 추상적, "교과서".
+*   **핵심 요소:** 그래프 노드(원)와 다양체(평면/곡면)에 집중합니다.
+*   **색상:** 자제됨. 주로 그레이스케일/검정/흰색에 하나의 강조 색상 (예: 금색 또는 파란색). "만화 같은" 요소를 피하세요.

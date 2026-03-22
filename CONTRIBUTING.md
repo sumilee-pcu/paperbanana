@@ -1,28 +1,17 @@
-# How to Contribute
+# 기여 방법
 
-We'd love to accept your patches and contributions to this project. There are
-just a few small guidelines you need to follow.
+이 프로젝트에 대한 패치와 기여를 환영합니다. 따라야 할 몇 가지 간단한 지침이 있습니다.
 
-## Contributor License Agreement
+## 기여자 라이선스 계약 (CLA)
 
-Contributions to this project must be accompanied by a Contributor License
-Agreement. You (or your employer) retain the copyright to your contribution;
-this simply gives us permission to use and redistribute your contributions as
-part of the project. Head over to <https://cla.developers.google.com/> to see
-your current agreements on file or to sign a new one.
+이 프로젝트에 대한 기여에는 기여자 라이선스 계약이 수반되어야 합니다. 귀하(또는 귀하의 고용주)는 기여에 대한 저작권을 유지합니다. 이 계약은 단순히 귀하의 기여를 프로젝트의 일부로 사용하고 재배포할 수 있는 권한을 부여합니다. <https://cla.developers.google.com/>에서 현재 체결된 계약을 확인하거나 새 계약에 서명하세요.
 
-You generally only need to submit a CLA once, so if you've already submitted one
-(even if it was for a different project), you probably don't need to do it
-again.
+일반적으로 CLA는 한 번만 제출하면 되므로, 이미 제출한 적이 있다면(다른 프로젝트를 위한 것이었더라도) 다시 제출할 필요가 없습니다.
 
-## Code reviews
+## 코드 리뷰
 
-All submissions, including submissions by project members, require review. We
-use GitHub pull requests for this purpose. Consult
-[GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
-information on using pull requests.
+프로젝트 멤버의 제출을 포함한 모든 제출물은 리뷰가 필요합니다. 이를 위해 GitHub 풀 리퀘스트를 사용합니다. 풀 리퀘스트 사용에 대한 자세한 내용은 [GitHub 도움말](https://help.github.com/articles/about-pull-requests/)을 참고하세요.
 
-## Community Guidelines
+## 커뮤니티 가이드라인
 
-This project follows
-[Google's Open Source Community Guidelines](https://opensource.google/conduct/).
+이 프로젝트는 [Google의 오픈소스 커뮤니티 가이드라인](https://opensource.google/conduct/)을 따릅니다.
