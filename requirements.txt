@@ -1,6 +1,5 @@
 google-genai
 streamlit
-asyncio
 aiofiles
 pillow
 numpy
@@ -13,3 +12,4 @@ python-dotenv
 pyyaml
 google-auth
 huggingface_hub
+httpx

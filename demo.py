@@ -32,6 +32,24 @@ from datetime import datetime
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent))
 
+# Streamlit Cloud 시크릿 → 환경 변수 자동 주입
+_SECRET_ENV_MAP = {
+    "GOOGLE_API_KEY": "GOOGLE_API_KEY",
+    "OPENAI_API_KEY": "OPENAI_API_KEY",
+    "ANTHROPIC_API_KEY": "ANTHROPIC_API_KEY",
+    "OPENROUTER_API_KEY": "OPENROUTER_API_KEY",
+    "MAIN_MODEL_NAME": "MAIN_MODEL_NAME",
+    "IMAGE_GEN_MODEL_NAME": "IMAGE_GEN_MODEL_NAME",
+}
+for _secret_key, _env_key in _SECRET_ENV_MAP.items():
+    if not os.getenv(_env_key):
+        try:
+            _val = st.secrets.get(_secret_key)
+            if _val:
+                os.environ[_env_key] = _val
+        except Exception:
+            pass
+
 print("DEBUG: Importing agents...")
 import yaml
 import shutil
@@ -80,7 +98,7 @@ except Exception as e:
 
 st.set_page_config(
     layout="wide",
-    page_title="PaperBanana Parallel Demo",
+    page_title="PaperBanana 병렬 데모",
     page_icon="🍌"
 )
 
@@ -279,10 +297,10 @@ def get_evolution_stages(result, exp_mode):
     planner_desc_key = f"target_{task_name}_desc0"
     if planner_img_key in result and result[planner_img_key]:
         stages.append({
-            "name": "📋 Planner",
+            "name": "📋 Planner (계획)",
             "image_key": planner_img_key,
             "desc_key": planner_desc_key,
-            "description": "Initial diagram plan based on method content"
+            "description": "방법론 내용을 기반으로 한 초기 다이어그램 계획"
         })
     
     # Stage 2: Stylist output (only for demo_full)
@@ -291,10 +309,10 @@ def get_evolution_stages(result, exp_mode):
         stylist_desc_key = f"target_{task_name}_stylist_desc0"
         if stylist_img_key in result and result[stylist_img_key]:
             stages.append({
-                "name": "✨ Stylist",
+                "name": "✨ Stylist (스타일)",
                 "image_key": stylist_img_key,
                 "desc_key": stylist_desc_key,
-                "description": "Stylistically refined description"
+                "description": "스타일 가이드라인에 맞게 개선된 설명"
             })
     
     # Stage 3+: Critic iterations
@@ -305,11 +323,11 @@ def get_evolution_stages(result, exp_mode):
         
         if critic_img_key in result and result[critic_img_key]:
             stages.append({
-                "name": f"🔍 Critic Round {round_idx}",
+                "name": f"🔍 Critic 라운드 {round_idx} (평가)",
                 "image_key": critic_img_key,
                 "desc_key": critic_desc_key,
                 "suggestions_key": critic_sugg_key,
-                "description": f"Refined after critic feedback (iteration {round_idx})"
+                "description": f"평가 피드백 후 개선된 결과 ({round_idx}번째 반복)"
             })
     
     return stages
@@ -346,13 +364,13 @@ def display_candidate_result(result, candidate_id, exp_mode):
     if final_image_key and final_image_key in result:
         img = base64_to_image(result[final_image_key])
         if img:
-            st.image(img, use_container_width=True, caption=f"Candidate {candidate_id} (Final)")
-            
+            st.image(img, use_container_width=True, caption=f"후보 {candidate_id} (최종)")
+
             # Add download button
             buffered = BytesIO()
             img.save(buffered, format="PNG")
             st.download_button(
-                label="⬇️ Download",
+                label="⬇️ 다운로드",
                 data=buffered.getvalue(),
                 file_name=f"candidate_{candidate_id}.png",
                 mime="image/png",
@@ -360,15 +378,15 @@ def display_candidate_result(result, candidate_id, exp_mode):
                 use_container_width=True
             )
         else:
-            st.error(f"Failed to decode image for Candidate {candidate_id}")
+            st.error(f"후보 {candidate_id}의 이미지를 디코딩하는 데 실패했습니다")
     else:
-        st.warning(f"No image generated for Candidate {candidate_id}")
-    
+        st.warning(f"후보 {candidate_id}에 대한 이미지가 생성되지 않았습니다")
+
     # Show evolution timeline in an expander
     stages = get_evolution_stages(result, exp_mode)
     if len(stages) > 1:
-        with st.expander(f"🔄 View Evolution Timeline ({len(stages)} stages)", expanded=False):
-            st.caption("See how the diagram evolved through different pipeline stages")
+        with st.expander(f"🔄 진화 타임라인 보기 ({len(stages)}단계)", expanded=False):
+            st.caption("파이프라인 각 단계를 거치며 다이어그램이 어떻게 발전했는지 확인하세요")
             
             for idx, stage in enumerate(stages):
                 st.markdown(f"### {stage['name']}")
@@ -381,17 +399,17 @@ def display_candidate_result(result, candidate_id, exp_mode):
                 
                 # Show description
                 if stage['desc_key'] in result:
-                    with st.expander(f"📝 Description", expanded=False):
+                    with st.expander(f"📝 설명 보기", expanded=False):
                         cleaned_desc = clean_text(result[stage['desc_key']])
                         st.write(cleaned_desc)
-                
+
                 # Show critic suggestions if available
                 if 'suggestions_key' in stage and stage['suggestions_key'] in result:
                     suggestions = result[stage['suggestions_key']]
-                    with st.expander(f"💡 Critic Suggestions", expanded=False):
+                    with st.expander(f"💡 평가 제안 사항", expanded=False):
                         cleaned_sugg = clean_text(suggestions)
                         if cleaned_sugg.strip() == "No changes needed.":
-                            st.success("✅ No changes needed - iteration stopped.")
+                            st.success("✅ 변경 사항 없음 - 반복이 중단되었습니다.")
                         else:
                             st.write(cleaned_sugg)
                 
@@ -400,74 +418,74 @@ def display_candidate_result(result, candidate_id, exp_mode):
                     st.divider()
     else:
         # If only one stage, show description in simpler expander
-        with st.expander(f"📝 View Description", expanded=False):
+        with st.expander(f"📝 설명 보기", expanded=False):
             if final_desc_key and final_desc_key in result:
                 # Clean the text to remove invalid UTF-8 characters
                 cleaned_desc = clean_text(result[final_desc_key])
                 st.write(cleaned_desc)
             else:
-                st.info("No description available")
+                st.info("설명을 사용할 수 없습니다")
 
 def main():
-    st.title("🍌 PaperBanana Demo")
-    st.markdown("AI-powered scientific diagram generation and refinement")
-    
+    st.title("🍌 PaperBanana 데모")
+    st.markdown("AI 기반 학술 다이어그램 생성 및 개선")
+
     # Create tabs
-    tab1, tab2 = st.tabs(["📊 Generate Candidates", "✨ Refine Image"])
+    tab1, tab2 = st.tabs(["📊 후보 생성", "✨ 이미지 개선"])
     
     # ==================== TAB 1: Generate Candidates ====================
     with tab1:
-        st.markdown("### Generate multiple diagram candidates from your method section and caption")
-        
+        st.markdown("### 방법론 섹션과 캡션으로부터 다이어그램 후보를 여러 개 생성합니다")
+
         # Sidebar configuration for Tab 1
         with st.sidebar:
-            st.title("⚙️ Generation Settings")
-            
+            st.title("⚙️ 생성 설정")
+
             exp_mode = st.selectbox(
-                "Pipeline Mode",
+                "파이프라인 모드",
                 ["demo_full", "demo_planner_critic"],
                 index=0,
                 key="tab1_exp_mode",
-                help="Select which agent pipeline to use"
+                help="사용할 에이전트 파이프라인을 선택하세요"
             )
-            
+
             mode_info = {
                 "demo_planner_critic": "Planner → Visualizer → Critic → Visualizer",
-                "demo_full": "Retriever → Planner → Stylist → Visualizer → Critic → Visualizer. (The stylist can make the diagram more aesthetically pleasing, but prone to be overly simplied. So we recommend trying both modes and select the best one)"
+                "demo_full": "Retriever → Planner → Stylist → Visualizer → Critic → Visualizer. (Stylist는 다이어그램을 더 미적으로 만들 수 있지만, 과도하게 단순화될 수 있습니다. 두 모드 모두 시도해보고 더 좋은 결과를 선택하는 것을 권장합니다)"
             }
-            st.info(f"**Pipeline:** {mode_info[exp_mode]}")
-            
+            st.info(f"**파이프라인:** {mode_info[exp_mode]}")
+
             retrieval_setting = st.selectbox(
-                "Retrieval Setting",
+                "검색 설정",
                 ["auto", "manual", "random", "none"],
                 index=0,
                 key="tab1_retrieval_setting",
-                help="How to retrieve reference diagrams: auto (automatic selection), manual (use specified references), random (random selection), none (no retrieval)"
+                help="참조 다이어그램 검색 방법: auto(자동 선택), manual(지정 참조 사용), random(무작위 선택), none(검색 없음)"
             )
-            
+
             num_candidates = st.number_input(
-                "Number of Candidates",
+                "후보 수",
                 min_value=1,
                 max_value=20,
                 value=10,
                 key="tab1_num_candidates",
-                help="How many parallel candidates to generate"
+                help="병렬로 생성할 후보 수"
             )
-            
+
             aspect_ratio = st.selectbox(
-                "Aspect Ratio",
+                "종횡비",
                 ["21:9", "16:9", "3:2"],
                 key="tab1_aspect_ratio",
-                help="Aspect ratio for the generated diagrams"
+                help="생성할 다이어그램의 종횡비"
             )
-            
+
             max_critic_rounds = st.number_input(
-                "Max Critic Rounds",
+                "최대 평가 라운드",
                 min_value=1,
                 max_value=5,
                 value=3,
                 key="tab1_max_critic_rounds",
-                help="Maximum number of critic refinement iterations"
+                help="평가(Critic) 개선 반복의 최대 횟수"
             )
             
             default_model = get_config_val("defaults", "main_model_name", "MAIN_MODEL_NAME", "gemini-3.1-pro-preview")
@@ -478,18 +496,18 @@ def main():
                 text_model_presets.insert(0, "gemini-3.1-pro-preview")
             text_model_presets.append("Custom")
             text_model_selection = st.selectbox(
-                "Main Model Name",
+                "메인 모델 이름",
                 text_model_presets,
                 index=0,
                 key="tab1_model_name",
-                help="Vision-language model for understanding and describing diagrams"
+                help="다이어그램 이해 및 설명을 위한 비전-언어 모델"
             )
             if text_model_selection == "Custom":
                 main_model_name = st.text_input(
-                    "Custom Main Model",
+                    "직접 입력 (메인 모델)",
                     value="",
                     key="tab1_main_model_name_custom",
-                    placeholder="e.g., openrouter/google/gemini-3.1-pro"
+                    placeholder="예: openrouter/google/gemini-3.1-pro"
                 )
             else:
                 main_model_name = text_model_selection
@@ -502,26 +520,26 @@ def main():
                 image_model_presets.insert(0, "gemini-3.1-flash-image-preview")
             image_model_presets.append("Custom")
             image_model_selection = st.selectbox(
-                "Image Generation Model Name",
+                "이미지 생성 모델 이름",
                 image_model_presets,
                 index=0,
                 key="tab1_image_model_name",
-                help="Model for generating diagram images"
+                help="다이어그램 이미지 생성에 사용할 모델"
             )
             if image_model_selection == "Custom":
                 image_gen_model_name = st.text_input(
-                    "Custom Image Generation Model",
+                    "직접 입력 (이미지 생성 모델)",
                     value="",
                     key="tab1_image_gen_model_name_custom",
-                    placeholder="e.g., openrouter/openai/gpt-image-1"
+                    placeholder="예: openrouter/openai/gpt-image-1"
                 )
             else:
                 image_gen_model_name = image_model_selection
         
         st.divider()
-        
+
         # Input section
-        st.markdown("## 📝 Input")
+        st.markdown("## 📝 입력")
         
         # Example content
         example_method = r"""## Methodology: The PaperBanana Framework
@@ -581,57 +599,57 @@ The framework extends to statistical plots by adjusting the Visualizer and Criti
         with col_input1:
             # Example selector for method content
             method_example = st.selectbox(
-                "Load Example (Method)",
-                ["None", "PaperBanana Framework"],
+                "예시 불러오기 (방법론)",
+                ["없음", "PaperBanana 프레임워크"],
                 key="method_example_selector"
             )
-            
+
             # Set value based on example selection or session state
-            if method_example == "PaperBanana Framework":
+            if method_example == "PaperBanana 프레임워크":
                 method_value = example_method
             else:
                 method_value = st.session_state.get("method_content", "")
-            
+
             method_content = st.text_area(
-                "Method Section Content (Markdown recommended)",
+                "방법론 섹션 내용 (마크다운 권장)",
                 value=method_value,
                 height=250,
-                placeholder="Paste the method section content here...",
-                help="The method section from the paper that describes the approach. Markdown format is recommended."
+                placeholder="논문의 방법론 섹션 내용을 여기에 붙여넣으세요...",
+                help="접근 방식을 설명하는 논문의 방법론 섹션입니다. 마크다운 형식을 권장합니다."
             )
-        
+
         with col_input2:
             # Example selector for caption
             caption_example = st.selectbox(
-                "Load Example (Caption)",
-                ["None", "PaperBanana Framework"],
+                "예시 불러오기 (캡션)",
+                ["없음", "PaperBanana 프레임워크"],
                 key="caption_example_selector"
             )
-            
+
             # Set value based on example selection or session state
-            if caption_example == "PaperBanana Framework":
+            if caption_example == "PaperBanana 프레임워크":
                 caption_value = example_caption
             else:
                 caption_value = st.session_state.get("caption", "")
-            
+
             caption = st.text_area(
-                "Figure Caption (Markdown recommended)",
+                "그림 캡션 (마크다운 권장)",
                 value=caption_value,
                 height=250,
-                placeholder="Enter the figure caption...",
-                help="The caption or description of the figure to generate. Markdown format is recommended."
+                placeholder="그림 캡션을 입력하세요...",
+                help="생성할 그림의 캡션 또는 설명입니다. 마크다운 형식을 권장합니다."
             )
-        
+
         # Process button
-        if st.button("🚀 Generate Candidates", type="primary", use_container_width=True):
+        if st.button("🚀 후보 생성", type="primary", use_container_width=True):
             if not method_content or not caption:
-                st.error("Please provide both method content and caption!")
+                st.error("방법론 내용과 캡션을 모두 입력해주세요!")
             else:
                 # Save to session state
                 st.session_state["method_content"] = method_content
                 st.session_state["caption"] = caption
                 
-                with st.spinner(f"Generating {num_candidates} candidates in parallel... This may take a few minutes."):
+                with st.spinner(f"{num_candidates}개 후보를 병렬로 생성 중... 몇 분 정도 소요될 수 있습니다."):
                     # Create input data list
                     input_data_list = create_sample_inputs(
                         method_content=method_content,
@@ -672,12 +690,12 @@ The framework extends to statistical plots by adjusting the Visualizer and Criti
                                 f.write(json_string)
                             
                             st.session_state["json_file"] = str(json_filename)
-                            st.success(f"✅ Successfully generated {len(results)} candidates!")
-                            st.info(f"💾 Results saved to: `{json_filename.name}`")
+                            st.success(f"✅ {len(results)}개 후보 생성 완료!")
+                            st.info(f"💾 결과 저장 위치: `{json_filename.name}`")
                         except Exception as e:
-                            st.warning(f"⚠️ Generated {len(results)} candidates, but failed to save JSON: {e}")
+                            st.warning(f"⚠️ {len(results)}개 후보를 생성했지만 JSON 저장에 실패했습니다: {e}")
                     except Exception as e:
-                        st.error(f"Error during processing: {e}")
+                        st.error(f"처리 중 오류 발생: {e}")
                         import traceback
                         st.code(traceback.format_exc())
         
@@ -688,8 +706,8 @@ The framework extends to statistical plots by adjusting the Visualizer and Criti
             timestamp = st.session_state.get("timestamp", "N/A")
             
             st.divider()
-            st.markdown("## 🎨 Generated Candidates")
-            st.caption(f"Generated at: {timestamp} | Pipeline: {mode_info.get(current_mode, current_mode)}")
+            st.markdown("## 🎨 생성된 후보")
+            st.caption(f"생성 시각: {timestamp} | 파이프라인: {mode_info.get(current_mode, current_mode)}")
             
             # Show JSON file download if available
             if "json_file" in st.session_state:
@@ -697,12 +715,12 @@ The framework extends to statistical plots by adjusting the Visualizer and Criti
                 if json_file_path.exists():
                     col1, col2 = st.columns([3, 1])
                     with col1:
-                        st.info(f"📄 Results saved to: `{json_file_path.relative_to(Path.cwd())}`")
+                        st.info(f"📄 결과 저장 위치: `{json_file_path.relative_to(Path.cwd())}`")
                     with col2:
                         with open(json_file_path, "r", encoding="utf-8") as f:
                             json_data = f.read()
                         st.download_button(
-                            label="⬇️ Download JSON",
+                            label="⬇️ JSON 다운로드",
                             data=json_data,
                             file_name=json_file_path.name,
                             mime="application/json",
@@ -723,7 +741,7 @@ The framework extends to statistical plots by adjusting the Visualizer and Criti
             
             # Add ZIP download button
             st.divider()
-            st.markdown("### 💾 Batch Download")
+            st.markdown("### 💾 일괄 다운로드")
             
             try:
                 import zipfile
@@ -763,49 +781,49 @@ The framework extends to statistical plots by adjusting the Visualizer and Criti
                 
                 zip_buffer.seek(0)
                 st.download_button(
-                    label="⬇️ Download ZIP",
+                    label="⬇️ ZIP 다운로드",
                     data=zip_buffer.getvalue(),
                     file_name=f"paperbanana_candidates_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip",
                     mime="application/zip",
                     use_container_width=True
                 )
-                st.success("ZIP file ready for download!")
+                st.success("ZIP 파일 다운로드 준비 완료!")
             except Exception as e:
-                st.error(f"Failed to create ZIP: {e}")
+                st.error(f"ZIP 생성 실패: {e}")
     
     # ==================== TAB 2: Refine Image ====================
     with tab2:
-        st.markdown("### Refine and upscale your diagram to high resolution (2K/4K)")
-        st.caption("Upload an image from the candidates or any diagram, describe changes, and generate a high-res version")
-        
+        st.markdown("### 다이어그램을 고해상도(2K/4K)로 개선 및 업스케일합니다")
+        st.caption("후보에서 생성된 이미지 또는 임의의 다이어그램을 업로드하고, 변경 사항을 설명하여 고해상도 버전을 생성하세요")
+
         # Sidebar for refinement settings
         with st.sidebar:
-            st.title("✨ Refinement Settings")
-            
+            st.title("✨ 개선 설정")
+
             refine_resolution = st.selectbox(
-                "Target Resolution",
+                "목표 해상도",
                 ["2K", "4K"],
                 index=0,
                 key="refine_resolution",
-                help="Higher resolution takes longer but produces better quality"
+                help="해상도가 높을수록 시간이 더 걸리지만 품질이 향상됩니다"
             )
-            
+
             refine_aspect_ratio = st.selectbox(
-                "Aspect Ratio",
+                "종횡비",
                 ["21:9", "16:9", "3:2"],
                 index=0,
                 key="refine_aspect_ratio",
-                help="Aspect ratio for the refined image"
+                help="개선된 이미지의 종횡비"
             )
-        
+
         st.divider()
-        
+
         # Upload section
-        st.markdown("## 📤 Upload Image")
+        st.markdown("## 📤 이미지 업로드")
         uploaded_file = st.file_uploader(
-            "Choose an image file",
+            "이미지 파일 선택",
             type=["png", "jpg", "jpeg"],
-            help="Upload the diagram you want to refine"
+            help="개선할 다이어그램을 업로드하세요"
         )
         
         if uploaded_file is not None:
@@ -814,24 +832,24 @@ The framework extends to statistical plots by adjusting the Visualizer and Criti
             col1, col2 = st.columns(2)
             
             with col1:
-                st.markdown("### Original Image")
+                st.markdown("### 원본 이미지")
                 st.image(uploaded_image, use_container_width=True)
-            
+
             with col2:
-                st.markdown("### Edit Instructions")
+                st.markdown("### 수정 지시사항")
                 edit_prompt = st.text_area(
-                    "Describe the changes you want",
+                    "원하는 변경 사항을 설명하세요",
                     height=200,
-                    placeholder="E.g., 'Change the color scheme to match academic paper style' or 'Make the text larger and bolder' or 'Keep everything the same but output in higher resolution'",
-                    help="Describe what you want to change or use 'Keep everything the same' for just upscaling",
+                    placeholder="예: '학술 논문 스타일에 맞게 색상을 변경해줘' 또는 '텍스트를 더 크고 굵게 만들어줘' 또는 '모든 것을 그대로 유지하되 고해상도로 출력해줘'",
+                    help="변경하고 싶은 내용을 설명하거나, 업스케일링만 원하면 '모든 것을 그대로 유지해줘'라고 입력하세요",
                     key="edit_prompt"
                 )
-                
-                if st.button("✨ Refine Image", type="primary", use_container_width=True):
+
+                if st.button("✨ 이미지 개선", type="primary", use_container_width=True):
                     if not edit_prompt:
-                        st.error("Please provide edit instructions!")
+                        st.error("수정 지시사항을 입력해주세요!")
                     else:
-                        with st.spinner(f"Refining image to {refine_resolution} resolution... This may take a minute."):
+                        with st.spinner(f"이미지를 {refine_resolution} 해상도로 개선 중... 잠시 기다려주세요."):
                             try:
                                 # Convert PIL image to bytes
                                 img_byte_arr = BytesIO()
@@ -856,30 +874,30 @@ The framework extends to statistical plots by adjusting the Visualizer and Criti
                                 else:
                                     st.error(message)
                             except Exception as e:
-                                st.error(f"Error during refinement: {e}")
+                                st.error(f"개선 중 오류 발생: {e}")
                                 import traceback
                                 st.code(traceback.format_exc())
-            
+
             # Display refined result if available
             if "refined_image" in st.session_state:
                 st.divider()
-                st.markdown("## 🎨 Refined Result")
-                st.caption(f"Generated at: {st.session_state.get('refine_timestamp', 'N/A')} | Resolution: {refine_resolution}")
-                
+                st.markdown("## 🎨 개선 결과")
+                st.caption(f"생성 시각: {st.session_state.get('refine_timestamp', 'N/A')} | 해상도: {refine_resolution}")
+
                 col1, col2 = st.columns(2)
-                
+
                 with col1:
-                    st.markdown("### Before")
+                    st.markdown("### 이전")
                     st.image(uploaded_image, use_container_width=True)
-                
+
                 with col2:
-                    st.markdown(f"### After ({refine_resolution})")
+                    st.markdown(f"### 이후 ({refine_resolution})")
                     refined_image = Image.open(BytesIO(st.session_state["refined_image"]))
                     st.image(refined_image, use_container_width=True)
-                    
+
                     # Download button
                     st.download_button(
-                        label=f"⬇️ Download {refine_resolution} Image",
+                        label=f"⬇️ {refine_resolution} 이미지 다운로드",
                         data=st.session_state["refined_image"],
                         file_name=f"refined_{refine_resolution}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png",
                         mime="image/png",
